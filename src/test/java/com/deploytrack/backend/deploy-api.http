@@ -1,0 +1,43 @@
+### Criar novo deploy (POST)
+POST http://localhost:8081/deploys
+Content-Type: application/json
+
+{
+  "application": "Sistema de Vendas",
+  "version": "1.0.0",
+  "environment": "prod",
+  "author": "ana.silva",
+  "status": "SUCCESS"
+}
+
+### Buscar todos os deploys (GET)
+GET http://localhost:8081/deploys
+
+### Buscar com filtros (GET)
+GET http://localhost:8081/deploys?status=SUCCESS&author=ana.silva
+
+### Buscar por ID (GET)
+GET http://localhost:8081/deploys/1
+
+### Atualizar por ID (PUT)
+PUT http://localhost:8081/deploys/1
+Content-Type: application/json
+
+{
+  "application": "Sistema de Vendas",
+  "version": "1.0.1",
+  "environment": "prod",
+  "author": "ana.silva",
+  "status": "ROLLBACK"
+}
+
+### Atualizar parcialmente (PATCH)
+PATCH http://localhost:8081/deploys/1
+Content-Type: application/json
+
+{
+  "status": "ERROR"
+}
+
+### Deletar por ID (DELETE)
+DELETE http://localhost:8081/deploys/13
