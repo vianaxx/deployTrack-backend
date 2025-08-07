@@ -3,11 +3,11 @@ POST http://localhost:8081/deploys
 Content-Type: application/json
 
 {
-  "application": "Sistema de Vendas",
-  "version": "1.0.0",
-  "environment": "prod",
-  "author": "ana.silva",
-  "status": "SUCCESS"
+  "application": "Controle de Estoque",
+  "version": "3.1.3",
+  "environment": "dev",
+  "author": "fernando.oliveira",
+  "status": "ROLLBACK"
 }
 
 ### Buscar todos os deploys (GET)
@@ -17,7 +17,7 @@ GET http://localhost:8081/deploys
 GET http://localhost:8081/deploys?status=SUCCESS&author=ana.silva
 
 ### Buscar por ID (GET)
-GET http://localhost:8081/deploys/1
+GET http://localhost:8081/deploys/2
 
 ### Atualizar por ID (PUT)
 PUT http://localhost:8081/deploys/1

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class DeployLogService {
@@ -59,19 +60,17 @@ public class DeployLogService {
     }
 
     // Atualiza um deploy existente (por ID)
-    public DeployLog updateDeploy(Long id, DeployLog newData) {
-        DeployLog existing = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Deploy não encontrado"));
-
-        existing.setApplication((newData.getApplication()));
-        existing.setVersion(newData.getVersion());
-        existing.setEnvironment(newData.getEnvironment());
-        existing.setAuthor(newData.getAuthor());
-        existing.setStatus(newData.getStatus());
-        existing.setTimestamp(LocalDateTime.now());
-
-        return repository.save(existing);
+    public Optional<DeployLog> update(Long id, DeployLog updated) {
+        return repository.findById(id).map(existing -> {
+            existing.setApplication(updated.getApplication());
+            existing.setVersion(updated.getVersion());
+            existing.setEnvironment(updated.getEnvironment());
+            existing.setAuthor(updated.getAuthor());
+            existing.setStatus(updated.getStatus());
+            return repository.save(existing);
+        });
     }
+
 
 
     //Deleta um deploy por ID

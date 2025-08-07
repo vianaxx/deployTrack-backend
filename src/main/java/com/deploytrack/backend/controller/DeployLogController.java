@@ -49,9 +49,12 @@ public class DeployLogController {
 
     //PUT/ deploys/{id} - Atualiza um deploy existente
     @PutMapping("/{id}")
-    public ResponseEntity<DeployLog>update(@PathVariable Long id, @RequestBody DeployLog deploy){
-        return ResponseEntity.ok(service.updateDeploy(id, deploy));
+    public ResponseEntity<DeployLog> updateDeploy(@PathVariable Long id, @RequestBody DeployLog updatedDeploy) {
+        return service.update(id, updatedDeploy)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
+
 
     //Delete /deploy/{id} - Deleta um deply por id
     @DeleteMapping("/{id}")
